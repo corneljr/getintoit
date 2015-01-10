@@ -73,10 +73,10 @@
 </div>
 
 <%= javascript_tag do %>
-	
+
 	$(function() {
 
-		var team_data = $.parseJSON('<%= raw Venue.information_array %>');
+		var team_data = <%= Venue.information_array.html_safe %>
 
 		$('.venue').autocomplete({
 			source: team_data,

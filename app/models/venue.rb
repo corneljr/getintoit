@@ -14,7 +14,7 @@ class Venue < ActiveRecord::Base
 
   validates :name, :city_id, :province_id, :country, :address, :presence => true
 
-	def self.information_array
+  def self.information_array
 		array = []
 		Venue.all.each do |venue|
 			hash = {} 

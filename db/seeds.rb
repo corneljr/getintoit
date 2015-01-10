@@ -538,14 +538,14 @@ end
 
 puts '----------------creating sub requests---------------'
 
-	player1.sub_requests.create(day: rand(1..7), team_id: team1.id, start_time: Time.new(2015,1,17,20,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player1.sub_requests.create(day: rand(1..7), team_id: team2.id, start_time: Time.new(2015,1,17,15,0,0,"+00:00"), venue_id: venue2.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player1.sub_requests.create(day: rand(1..7), team_id: team3.id, start_time: Time.new(2015,1,18,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player1.sub_requests.create(day: rand(1..7), team_id: team6.id, start_time: Time.new(2015,1,18,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player2.sub_requests.create(day: rand(1..7), team_id: team4.id, start_time: Time.new(2015,1,17,20,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player2.sub_requests.create(day: rand(1..7), team_id: team5.id, start_time: Time.new(2015,1,17,15,0,0,"+00:00"), venue_id: venue2.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player2.sub_requests.create(day: rand(1..7), team_id: team6.id, start_time: Time.new(2015,1,18,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
-	player2.sub_requests.create(day: rand(1..7), team_id: team6.id, start_time: Time.new(2015,1,19,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, skill_level: 2, city_id: city.id, gender: 'male', sub_id: 1, status: 2)
+player1.sub_requests.create(day: rand(1..7), team_id: team1.id, start_time: Time.new(2015,1,17,20,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player1.sub_requests.create(day: rand(1..7), team_id: team2.id, start_time: Time.new(2015,1,17,15,0,0,"+00:00"), venue_id: venue2.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player1.sub_requests.create(day: rand(1..7), team_id: team3.id, start_time: Time.new(2015,1,18,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player1.sub_requests.create(day: rand(1..7), team_id: team6.id, start_time: Time.new(2015,1,18,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player2.sub_requests.create(day: rand(1..7), team_id: team4.id, start_time: Time.new(2015,1,17,20,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player2.sub_requests.create(day: rand(1..7), team_id: team5.id, start_time: Time.new(2015,1,17,15,0,0,"+00:00"), venue_id: venue2.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player2.sub_requests.create(day: rand(1..7), team_id: team6.id, start_time: Time.new(2015,1,18,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, status: 0, skill_level: 2, city_id: city.id, gender: 'male')
+player2.sub_requests.create(day: rand(1..7), team_id: team6.id, start_time: Time.new(2015,1,19,18,0,0,"+00:00"), venue_id: venue1.id, sport_id: 2, skill_level: 2, city_id: city.id, gender: 'male', sub_id: 1, status: 2)
 
 
 
