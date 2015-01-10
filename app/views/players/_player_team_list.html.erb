@@ -1,6 +1,19 @@
-<ul class='current-teams'>
-	<h4>My Current Teams</h4>
-  <% @player.teams.each do |team| %> 
-    <li><%= team.name %></li>
+<% if @player.teams.present? %>
+  <% @player.teams.each do |team| %>
+	  <div class='team-list-item'>
+	  	<div class='team-list-logo'>
+	  		<div class='team-logo'>
+	    		<span class='team-initials'><%= team.name[0].capitalize %></span>
+	    	</div>
+	    </div>
+	    <div class='team-list-name'>
+	    	<span class='team-name'><%= team.name %></span>
+	    </div>
+	    <div class='team-list-delete'>
+		    <%= link_to player_destroy_team_path(current_user, team), remote: true, method: :delete, class: 'team-delete' do %>
+		    	<i class="fa fa-times"></i>
+		    <% end %>
+	    </div>
+	  </div> 
   <% end %>
-</ul>
+<% end %>
