@@ -103,32 +103,6 @@
 		});
 	});
 
-	$('#game-select').on('change', function() {
-		value = $(this).val();
-		$('.game-container').hide();
-		if (value === 'upcoming') {
-			$('.upcoming-game-container').show();
-		} else if (value === 'requests') {
-			$('.sub-requests-container').show();
-		} else {
-			$('.past-games-container').show();
-		}
-	});
-
-	$('.tabs').on('click', function() {
-		$('.tabs').removeClass('active');
-		$(this).addClass('active');
-		value = $(this).attr('id');
-		$('.game-container').hide();
-		if (value === 'upcoming') {
-			$('.upcoming-game-container').show();
-		} else if (value === 'requests') {
-			$('.sub-requests-container').show();
-		} else {
-			$('.past-games-container').show();
-		}
-	});
-
 	$('.clickable-grid-container').hover( 
 		function() {
 			$(this).find('.cover').removeClass('hidden')
