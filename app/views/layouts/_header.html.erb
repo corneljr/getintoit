@@ -5,21 +5,21 @@
       <%= image_tag 'logo-transparent.png', id: 'header-logo' %>
     <% end %>
     <div class='header-nav'>
-      <div class='nav-item-container active'>
+      <div class='nav-item-container active' id='openings-nav'>
         <%= link_to sub_requests_path, remote: true, class: 'header-link' do %>
           <p>Openings</p>
           <i class="fa fa-futbol-o"></i>
         <% end %>
         <div class='arrow-down active'></div>
       </div>
-      <div class='nav-item-container'>
+      <div class='nav-item-container' id='games-nav'>
         <%= link_to player_path(current_user), remote: true, class: 'header-link' do %>
           <p>My Games</p>
           <i class="fa fa-briefcase"></i>
         <% end %>
         <div class='arrow-down'></div>
       </div>
-      <div class='nav-item-container'>
+      <div class='nav-item-container' id='find-nav'>
         <%= link_to new_sub_request_path, remote: true, class: 'header-link' do %>
           <p>Find a Sub</p>
           <i class="fa fa-search"></i>

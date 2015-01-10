@@ -35,4 +35,24 @@ $(document).ready( function() {
     $(this).addClass('active');
     $(this).find('.arrow-down').addClass('active');
   });
+
+  var tabSelect = function() {
+    section = window.location.pathname
+    $('.nav-item-container').removeClass('active');
+    $('.arrow-down').removeClass('active');
+
+    if (section.match(/^\/sub_requests$/)) {
+      $('#openings-nav').addClass('active');
+      $('#openings-nav').find('.arrow-down').addClass('active');
+    } else if (section.match(/^\/players/)) {
+      $('#games-nav').addClass('active');
+      $('#games-nav').find('.arrow-down').addClass('active');
+    } else if (section.match(/^\/sub_requests\/new$/)) {
+      $('#find-nav').addClass('active');
+      $('#find-nav').find('.arrow-down').addClass('active');
+    };
+  }
+
+  tabSelect();
+
 });
