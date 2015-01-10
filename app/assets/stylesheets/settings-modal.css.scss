@@ -49,7 +49,7 @@ $large-screen: 800px;
     opacity: 0;
     text-align: left;
     visibility: hidden;
-    z-index: 99999999999;
+    z-index: 99;
 
     .modal-bg {
       @include position(absolute, 0px 0px 0px 0px);
