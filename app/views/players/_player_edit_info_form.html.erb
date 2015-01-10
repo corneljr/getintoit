@@ -1,0 +1,35 @@
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :first_name, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :first_name, placeholder: 'First Name', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :last_name, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :last_name, placeholder: 'Last Name', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :email, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.email_field :email, placeholder: 'Email', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :birth_date, 'Date of Birth',class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :birth_date, placeholder: 'MM/DD/YYYY', 'required' => 'required', value: @player.birth_date.strftime('%d/%m/%Y'), class: 'input-field' %>
+	</div>
+</div>

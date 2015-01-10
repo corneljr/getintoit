@@ -1,0 +1,13 @@
+<p>Tell us what methods of notifications you would like.</p>
+<% ['Email','SMS Text','Push Notifications','Carrier Pigeon'].each do |type| %>
+	<div class='notification-container'>
+		<p class='notification-type'><%= type %></p>
+		<div class='switch-container'>
+			<label class="label-switch">
+			  <input type="checkbox" />
+			  <div class="checkbox"></div>
+			</label>
+		</div>
+	</div>
+	<%= check_box_tag type, 0, false, class: 'hidden'%>
+<% end %>

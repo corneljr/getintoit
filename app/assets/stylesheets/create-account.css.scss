@@ -1,0 +1,237 @@
+//sign up nav bar
+
+#progress-bar {
+	@include position(absolute, 50px 50% null null);
+	@include transform(translateX(50%));
+	width: 100%;
+
+	td {
+		background-color: grey;
+		height: 5px;
+	}
+
+	td.active {
+			background-color: #3498db;
+	}
+
+	@media (min-width: $large-width) {
+		display: none;
+	}
+}
+
+.current-step {
+	display: none;
+	font-size: 0.7rem;
+	@include position(absolute, -100px 50% null null);
+	@include transform(translateX(50%));
+
+	li {
+		position: relative;
+		width: 100px;
+		display: inline;
+		margin-right: 10px;
+
+		div {
+			margin-right: 5px;
+		}
+
+		p {
+			display: inline-block;
+			color: rgba(255,255,255,0.5);
+
+			&.active {
+				color: rgba(255,255,255,1);
+			}
+		}
+	}
+
+	@media (min-width: $large-width) {
+		display: block;
+	}
+}
+
+.signup-title {
+	@include position(absolute, -50px 50% null null);
+	@include transform(translateX(50%));
+}
+
+//personal information
+
+#title {
+	font-size: 1.2rem;
+}
+
+.form-info-text {
+	font-size: 0.9rem;
+	width: 80%;
+}
+
+//sport skill level page
+
+.player-sport-icon-container {
+	height: 40px;
+	width: 40px;
+	border-radius: 40px;
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+	background-color: #7c92a4;
+
+	&.playing {
+		background-color: #7cb437;
+	}
+}
+
+.player-sports-headers {
+	@include outer-container;
+	@include row(table);
+}
+
+.sport-list-item {
+	border-top: 1px solid rgba(255,255,255,.3);
+	height: 50px;
+	text-align: left;
+	@include outer-container;
+	@include row(table);
+	@include position(relative);
+}
+
+.player-sports-icon {
+	@include position(relative);
+	@include span-columns(2);
+	text-align:center;
+}
+
+.player-sports-name {
+	@include span-columns(4);
+	vertical-align: middle;
+}
+
+.player-sports-coed {
+	@include position(relative);
+	@include span-columns(2);
+	text-align: center;
+}
+
+.player-sports-skill {
+	@include span-columns(3);
+	text-align: center;
+}
+
+.player-sports-remove {
+	@include span-columns(1);
+	text-align: center;
+	@include position(relative);
+}
+
+.star-rating {
+	margin: 0;
+	@include position(absolute, 50% 80px null null);
+	@include transform(translateY(-50%));
+}
+
+.star {
+	font-size: 1.2rem;
+	display:inline;
+	color: rgba(243, 156, 18, 0.5);
+
+	.full {
+		color: #f39c12;
+	}
+}
+
+.play_coed {
+	color: #e95952;
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+}
+
+.remove_sport {
+	color: #e95952;
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+}
+
+//availability page
+
+.availability-table {
+	width: 100%;
+
+	td {
+		height: 50px;
+	}
+
+	.select-cell {
+		position: relative;
+
+		&:hover {
+			background-color: rgba(255,255,255,.1);
+		}
+	}
+}
+
+.availability-table {
+	border-collapse: collapse;
+}
+
+.availability-row {
+	border-top: $white-borders;		
+}
+
+.add-time {
+	font-size: 1.3rem;
+	color: #e95952;
+	opacity: 1;
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+
+	&.checked {
+		color: #e95952;
+	}
+}
+
+//Current leagues page
+
+.add-league-container {
+	border-top: $white-borders;
+	border-bottom: $white-borders;
+	padding: 10px;
+
+	p {
+		display: inline;
+		text-align: left;
+	}
+
+	h4 {
+		text-decoration: underline;
+	}
+}
+
+.added-leagues {
+	border-top: $white-borders;
+	margin-bottom: 10px;
+}
+
+.current-teams {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	width: 300px;
+	margin: auto;
+	text-align: center;
+
+	h4 {
+		text-decoration: underline;
+	}
+}
+
+.star-container {
+	@include position(relative);
+	width: 50%;
+	height: 50px;
+}
+
+//credit card info
+
+.credit-card-expiry {
+	height: 30px;
+}
+

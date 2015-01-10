@@ -1,0 +1,83 @@
+<div class="settings-modal">
+  <input class="settings-modal-state" id="modal-1" type="checkbox" />
+  <div class="settings-modal-window">
+    <div class="settings-modal-inner">
+      <div class='modal-header'>
+        <label class="settings-modal-close" for="modal-1"></label>
+        <h2 class='modal-title'>Settings</h2>
+      </div>
+      <div class='settings-select'>
+        <div class='settings-tab borders'>
+          <%= link_to '#', id: 'personal', class: 'active tabs' do %>
+            <p>Personal</p>
+          <% end %>
+        </div>
+        <div class='settings-tab'>
+          <%= link_to '#', id: 'sports', class: 'tabs' do %>
+            <p>Sports</p>
+          <% end %>
+        </div>
+        <div class='settings-tab borders'>
+          <%= link_to '#', id: 'availability', class: 'tabs' do %>
+            <p>Availability</p>
+          <% end %>
+        </div>  
+        <div class='settings-tab'>
+          <%= link_to '#', id: 'teams', class: 'tabs' do %>
+            <p>Teams</p>
+          <% end %>
+        </div>
+        <div class='settings-tab borders'>
+          <%= link_to '#', id: 'payment', class: 'tabs' do %>
+            <p>Payment</p>
+          <% end %>
+        </div>
+      </div>
+      <div class='settings-body'>
+        <br>
+        <div class='account-creation-container settings' id='personal-settings-modal'>
+          <%= form_for @player do |f| %>
+            <%= render partial: 'players/player_edit_info_form', locals: {f: f} %>
+            <%= hidden_field_tag :section, nil, value: 'personal' %>
+            <div class='submit-container'>
+              <%= f.submit 'SAVE', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+              <%= link_to 'CANCEL', '#', class: 'btn-cancel settings-cancel' %>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class='account-creation-container settings' id='availability-settings-modal' hidden>
+          <%= form_for @player do |f| %>
+            <%= render partial: 'players/player_edit_availability_form', locals: {f: f} %>
+            <%= hidden_field_tag :section, nil, value: 'availability' %>
+            <div class='submit-container'>
+              <%= f.submit 'SAVE', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+              <%= link_to 'CANCEL', '#', class: 'btn-cancel settings-cancel' %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class='account-creation-container settings' id='sports-settings-modal' hidden>
+          <%= form_for @player do |f| %>
+            <%= render partial: 'players/player_edit_sports_form', locals: {f: f} %>
+            <%= hidden_field_tag :section, nil, value: 'sports' %>
+            <div class='submit-container'>
+              <%= f.submit 'Save', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+              <%= link_to 'CANCEL', '#', class: 'btn-cancel settings-cancel' %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class='account-creation-container settings' id='teams-settings-modal' hidden>
+          <%= render partial: 'players/player_teams_form' %>
+          <%= hidden_field_tag :section, nil, value: 'teams' %>
+        </div>
+
+        <div class='account-creation-container settings' id='payment-settings-modal' hidden>
+          <%= render partial: 'players/player_edit_card_form' %>
+        </div>
+        <br>  
+      </div>
+    </div>
+  </div>
+</div>

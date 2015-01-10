@@ -1,0 +1,89 @@
+<div class='main-title'>
+	<h3>Editing Sub Request</h3>
+</div>
+
+<div class='padded-container'>
+	<%= form_for @sub_request do |f| %>
+
+		<div class='input-container'>
+			<div class='label-container'>
+				<%= label_tag :number_of_subs, 'Number of Subs:', class: 'input-label' %>
+			</div> 	
+			<div class='field-container'>
+				<div class='select-wrapper'>
+					<%= select_tag :number_of_subs, options_for_select(['1','2','3','4','5','6']), class: 'section-select input-field' %>
+				</div>
+			</div>
+		</div>
+
+		<div class='input-container'>
+			<div class='label-container'>
+				<%= f.label :team_id, 'Team:', class: 'input-label' %>
+			</div> 	
+			<div class='field-container'>
+				<div class='select-wrapper'>
+					<%= f.select :team_id, options_for_select(@teams), {}, class: 'section-select input-field' %>
+				</div>
+			</div>
+			<%= link_to 'Add a team?', edit_player_path(current_user, section: 'teams'), style: 'font-size:0.8rem;' %>
+		</div>
+
+		<div class='input-container'>
+			<div class='label-container'>
+				<%= label_tag 'Venue:', nil, class: 'input-label' %>
+			</div> 	
+			<div class='field-container'>
+				<%= text_field_tag :venue, nil, value: @sub_request.venue.name, class: 'venue input-field' %>
+			</div>
+		</div>
+
+		<div class='input-container'>
+			<div class='label-container'>
+				<%= label_tag 'Venue Address:', nil, class: 'input-label' %>
+			</div> 	
+			<div class='field-container'>
+				<%= text_field_tag :venue_address, nil, value: @sub_request.venue.address, class: 'venue-address input-field' %>
+			</div>
+		</div>
+
+		<div class='input-container'>
+			<div class='label-container'>
+				<%= f.label 'Start Time:', nil, class: 'input-label' %>
+			</div> 	
+			<div class='field-container'>
+				<%= f.text_field :start_time, class: 'datetimepicker input-field' %>				
+			</div>
+		</div>
+
+		<div class='submit-container'>
+			<%= f.submit 'UPDATE', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+		<% end %>
+			<%= link_to 'CANCEL', root_path, 'style' => 'font-size:0.7rem;' %>
+		</div>
+
+</div>
+
+<%= javascript_tag do %>
+	
+	$(function() {
+
+		var team_data = $.parseJSON('<%= raw Venue.information_array %>');
+
+		$('.venue').autocomplete({
+			source: team_data,
+			select: function( event, ui ) {
+				$(this).val(ui.item.value);
+				$('.venue-address').val(ui.item.address);
+
+        return false;
+      }
+		});
+	});
+
+	$('.add-a-league').click( function() {
+		$('.league-fields').removeClass('hidden');
+	});
+
+	$('.datetimepicker').datetimepicker();
+
+<% end %>

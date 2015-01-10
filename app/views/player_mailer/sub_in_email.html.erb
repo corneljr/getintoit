@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<h2>Hey <%= @user.first_name %>,</h2>
+	<h4>Here are the details of your game:</h4>
+	<ul>
+		<li><strong>Team: </strong><%= @sub_request.team.name %></li>
+		<li><strong>Game time: </strong><%= @sub_request.start_time.strftime('%A %B %d, %Y') %> at <%= @sub_request.start_time.strftime("%l:%M %p") %></li>
+		<li><strong>Location: </strong><%= @sub_request.venue.name %>, <%= @sub_request.venue.address %></li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,75 @@
+#forgot-password {
+	margin-top: 20px;
+	color: #939393;
+	text-decoration: underline;
+}
+
+.input-container {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.input-field {
+	padding: 9px 8px 7px;
+	border-radius: 3px;
+	border: 1px solid rgba(255,255,255,0.5);
+	display: block;
+	background-color: transparent;
+	width: 100%;
+	outline-width: 0;
+	color:white;
+
+	&:focus {
+		border: 1px solid rgba(255,255,255,1);
+	}
+
+	&.invalid {
+		border: 1px solid rgba(211,84,0,0.9);
+	}
+
+	&.valid {
+		border: 1px solid rgba(46, 204, 113,1.0);
+	}
+}
+
+.label-container {
+	text-align: left;
+}
+
+.input-container {
+	text-align: left;
+}
+
+.input-label {
+	font-size: 0.8rem;
+}
+
+.log-in-box-container {
+	@include position(absolute, 50px 50% null null);
+	@include transform(translateX(50%));
+	width: 70%;
+
+	h1 {
+		font-weight: 100;
+	}
+}
+
+.log-in-background {
+	@include position(absolute, 0 0 0 0);
+	background: url(login-background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.forgot-password-link {
+	text-decoration: underline;
+	font-size: 0.8rem;
+}
+
+.forgot-password-container {
+	width: 300px;
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+}

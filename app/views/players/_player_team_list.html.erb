@@ -1,0 +1,6 @@
+<ul class='current-teams'>
+	<h4>My Current Teams</h4>
+  <% @player.teams.each do |team| %> 
+    <li><%= team.name %></li>
+  <% end %>
+</ul>

@@ -1,0 +1,45 @@
+<div class='log-in-background'>
+	<%= image_tag 'gradient-strip.png', 'style' => 'position:absolute;left:0;top:0;' %>
+	<div class='log-in-box-container'>
+		<%= image_tag 'logo-transparent.png', height: 40 %>
+		<br><br>
+		<h1>Join an Open Spot in Hundreds of <br>Toronto Sports leagues playing<br>
+			<div id="slidr-div">
+		    <div data-slidr="one">Hockey</div>
+		    <div data-slidr="two">Soccer</div>
+		    <div data-slidr="three">Football</div>
+		    <div data-slidr="four">Basketball</div>
+		  </div>
+    </h1>
+    <br>
+		<div class='log-in-box'>
+			<%= form_tag sessions_path do %>
+
+				<div class='input-container'>
+					<div class='label-container'>
+						<%= label_tag :email, 'Email:', class: 'input-label' %>
+					</div> 	
+					<div class='field-container'>
+						<%= text_field_tag :email, nil, class: 'input-field' %>
+					</div>
+				</div>
+
+				<div class='input-container'>
+					<div class='label-container'>
+						<%= label_tag :password, 'Password:', class: 'input-label' %>
+					</div>
+					<div class='field-container'>
+						<%= password_field_tag :password, nil, class: 'input-field' %>
+					</div>
+				</div>
+				<div class='input-container'>
+					<div class='button-container'>
+						<%= link_to 'Forgot your password?', forgot_password_path, class: 'forgot-password-link' %><br><br>
+						<%= submit_tag 'LOG IN', class: 'btn-submit login-button', 'style' => 'display:inline;' %>
+						<%= link_to 'CREATE ACCOUNT', new_player_path , class: 'btn-cancel' %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+Hey <%= @user.first_name %>,
+We just wanted to remind you about your <%= @sub_request.sport.name %> game today! Here are the details of your game:
+
+======================================================================================================================
+Team: <%= @sub_request.team.name %>
+Game time: <%= @sub_request.start_time.strftime('%A %B %d, %Y') %> at <%= @sub_request.start_time.strftime("%l:%M %p") %>
+Location: <%= @sub_request.venue.name %>, <%= @sub_request.venue.address %>
+
+Go rip it up!
+
+The Subzie Team

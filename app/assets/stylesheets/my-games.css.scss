@@ -1,0 +1,55 @@
+.pending-sub-icon-section {
+	font-size: 3rem;
+	@include position(relative);
+	@include span-columns(3);
+
+	i {
+		@include position(absolute, 50% 50% null null);
+		@include transform(translate(50%,-50%));
+	}
+
+	@media (min-width: $medium-width) {
+		@include span-columns(2);
+	}
+}
+
+.pending-sub-requests-information-section {
+	text-align: left;
+	@include position(relative);
+	@include span-columns(6);
+
+	.game-information {
+		width: 100%;
+		@include position(absolute, 50% 50% null null);
+		@include transform(translate(50%,-50%));
+	}
+
+	@media (min-width: $medium-width) {
+		@include span-columns(4);
+
+		.sub-player-information {
+			display: none;
+		}
+	}
+}
+
+.pending-sub-requests-sub-information {
+	text-align: left;
+	@include position(relative);
+	@include span-columns(0);
+
+	.sub-information {
+		display:none;
+		width: 100%;
+		@include position(absolute, 50% 50% null null);
+		@include transform(translate(50%,-50%));
+	}
+
+	@media (min-width: $medium-width) {
+		@include span-columns(4);
+
+		.sub-information {
+			display: block;
+		}
+	}
+}

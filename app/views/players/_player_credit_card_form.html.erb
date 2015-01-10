@@ -1,0 +1,53 @@
+<%= form_tag player_add_payment_info_path(current_user), id: 'payment_form', class: "#{current_user.stripe_customer_id ? 'hidden' : ''}" do %>
+	<p class='payment-errors' style='color:red;'></p>
+
+	<div class='input-container'>
+		<div class='label-container'>
+			<%= label_tag :card_number,' Credit Card No.', class: 'input-label' %>
+		</div>
+		<div class='field-container'>
+			<%= text_field_tag :card_number, nil, name: nil, placeholder: 'Credit Card', class: 'input-field' %>
+		</div>
+	</div>
+
+	<div class='input-container'>
+		<div class='label-container'>
+			<%= label_tag :card_code, 'Security Code (CVV)', class: 'input-label' %>
+		</div>
+		<div class='field-container'>
+			<%= text_field_tag :card_code, nil, name: nil, placeholder: 'CVV', class: 'input-field' %>
+		</div>
+	</div>
+	
+	<div class='input-container'>
+		<div class='label-container'>
+			<%= label_tag :card_month, 'Card Expiration', class: 'input-label' %>
+		</div>
+		<div class='field-container'>
+			<div class='select-wrapper'>
+				<%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: 'card_month', class: 'section-select input-field'} %>
+			</div>
+			<div class='select-wrapper'>
+				<%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year + 20}, {name: nil, id: 'card_year', class: 'section-select input-field'} %>
+			</div>
+		</div>
+	</div>
+
+	<%= hidden_field_tag :paymentToken,nil,id: 'payment_token' %>
+
+	<div class='submit-container'>
+		<div class='submit-container'>
+			<%= submit_tag 'Add Payment Information', class: 'payment-button btn-submit', 'disabled' => 'disabled' %>&nbsp;&nbsp;&nbsp;
+      <%= link_to 'skip', root_path, class: 'btn-cancel' %>
+    </div>
+	</div>
+<% end %>
+
+<script>
+	$('#card_code').change(function() {
+		$('.payment-button').removeAttr('disabled')
+	});
+	
+	Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+	payments.setupForm();
+</script>

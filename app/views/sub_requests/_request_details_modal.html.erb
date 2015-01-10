@@ -1,0 +1,34 @@
+<div class='request_details_container'>
+	<div class='icon-container'>
+		<div class='sport-icon-container'>
+			<%= image_tag "#{@sub_request.sport.name.split(' ').join('_')}.png", width: '30', class: 'sport-image' %>
+		</div>
+	</div>
+	<div class='request-categories'>
+		<h3><strong><%= @sub_request.sport.name.capitalize %></strong></h3>
+		<p><strong>Status:</strong></p>
+		<p><strong>Play Level:</strong></p>
+		<p><strong>League:</strong></p>
+		<p><strong>Team:</strong></p>
+		<p><strong>Location:</strong></p>
+		<p><strong>Date:</strong></p>
+		<p><strong>Start Time:</strong></p>
+	</div>
+	<div class='request-information'>
+		<h3>&nbsp;</h3>
+		<p><%= @sub_request.status %></p>
+		<p><%= @sub_request.skill_level %></p>
+		<p><%= @sub_request.team.league.name %></p>
+		<p><%= @sub_request.team.name %></p>
+		<p><%= "#{@sub_request.venue.name},#{@sub_request.venue.address}, #{@sub_request.venue_specific}" %></p>
+		<p><%= @sub_request.start_time.strftime("%B %d, %Y") %></p>
+		<p><%= @sub_request.start_time.strftime('%l:%M%P') %></p>
+	</div>
+</div>
+
+<% if @sub_request.is_waiting? %>
+	<div class='details-actions'>
+		<%= link_to 'Edit', edit_sub_request_path(@sub_request), class: 'btn-submit edit-sub' %>
+		<%= link_to 'Delete', sub_request_path(@sub_request), method: 'DELETE', class: 'btn-submit delete-sub' %>
+	</div>
+<% end %>

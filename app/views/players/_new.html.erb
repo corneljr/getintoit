@@ -1,0 +1,82 @@
+<section class='account-creation-container'>
+
+	<table id='progress-bar'>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+
+	<ul class='current-step'>
+		<li>
+			<div id='badge-1' class='badge active'><p>1</p></div><p id='title-1' class='active'>PROFILE</p>
+		</li>
+		<li>
+			<div id='badge-2' class='badge'><p>2</p></div><p id='title-2'>SPORTS</p>
+		</li>
+		<li>
+			<div id='badge-3' class='badge'><p>3</p></div><p id='title-3'>AVAILABILITY</p>
+		</li>
+		<li>
+			<div id='badge-4' class='badge'><p>4</p></div><p id='title-4'>TEAMS</p>
+		</li>
+		<li>
+			<div id='badge-5' class='badge'><p>5</p></div><p id='title-5'>PAYMENT INFO</p>
+		</li>
+	</ul>
+
+	<div class='padded-container'>
+		<% if @player.errors %>
+			<% @player.errors.full_messages.each do |msg| %>
+				<p style='color:red;'><%= msg %></p>
+			<% end %>
+		<% end %>
+
+		<%= form_for @player, html: {:name => 'NewPlayerForm'}, remote: true do |f| %>
+			<div id='section-1'>
+				<div class='signup-title'>
+					<h3>Your Profile</h3>
+				</div>
+				<div class='section-information'>
+					<p>Tell us about yourself!</p>
+				</div>
+				<br>
+				<%= render partial: 'player_info_form', locals: {f: f} %>
+				<div class='submit-container'>
+					<%= link_to 'Next', '#', class: 'btn-submit signup-button', id: 'button-1' %>
+				</div>
+			</div>
+
+			<div id='section-2' hidden>
+				<div class='signup-title'>
+					<h3>Rate your skill level in the sports you'd like to play!</h3>
+				</div>
+				<div class='section-information'>
+					<p>These are used to make sure the games are a good match for you.</p>
+				</div>
+				<br>
+				<%= render partial: 'player_sports_form', locals: {f: f} %>
+				<div class='submit-container'>
+					<%= link_to 'Next', '#', class: 'btn-submit submit-ratings disabled signup-button', id: 'button-2' %>
+				</div>
+			</div>
+
+			<div id='section-3' hidden>
+				<div class='signup-title'>
+					<h3>Select Your Availabilities!</h3>
+				</div>
+				<div class='section-information'>
+					<p>These are used to only show you games you are able to play.</p>
+				</div>
+				<br>
+				<%= render partial: 'player_availability_form', locals: {f: f} %>
+				<div class='submit-container'>
+					<%= f.submit 'Next', class: 'btn-submit signup-button', id: 'button-3' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</section>

@@ -1,0 +1,102 @@
+<div class='main-title'>
+	<h3>Hey <%= current_user.first_name %>, We found <span style='font-size:1.4rem;font-weight:bold;'><%= pluralize(@sub_requests.count, 'game') %></span> for you.</h3>
+</div>
+<br>
+<% if @soonest.present? && @other_sub_requests.present? %>
+	<p class='sort-games'>Sort Games:
+	<%= link_to 'SOONEST','#', id: 'soonest', class: 'filter-link active' %>
+	<%= link_to 'NEWEST','#', id: 'newest', class: 'filter-link' %>
+	<%= link_to 'SPORT','#', id: 'sport', class: 'filter-link' %>
+	</p>
+	<p class='location'>Showing you games in Toronto.</p>
+
+	<div class='sub-request-container'>
+		<div class='soonest sub-requests'>
+			<%= render partial: 'sub_request_list', locals: {sub_requests: @soonest} %>
+		</div>
+		<div class='newest sub-requests' hidden>
+			<%= render partial: 'sub_request_list', locals: {sub_requests: @newest} %>
+		</div>
+		<div class='sport sub-requests' hidden>
+			<%= render partial: 'sub_request_list', locals: {sub_requests: @sport} %>
+		</div>
+	</div>
+	<div class='other-sub-requests'>
+		<br>
+		<i class="fa fa-rss"></i><br>
+		<h4>We also found <strong><%= pluralize(@other_sub_requests.count, 'upcoming game') %></strong> from other sports in your area.</h4>
+	</div>
+	<div class='sub-request-container'>
+		<%= render partial: 'sub_request_list', locals: {sub_requests: @other_sub_requests} %>
+	</div>
+<% elsif @soonest.present? %>
+	<p class='sort-games'>Sort Games:
+	<%= link_to 'SOONEST','#', id: 'soonest', class: 'filter-link active' %>
+	<%= link_to 'NEWEST','#', id: 'newest', class: 'filter-link' %>
+	<%= link_to 'SPORT','#', id: 'sport', class: 'filter-link' %>
+	</p>
+	<p class='location'>Showing you games in Toronto.</p>
+
+	<div class='sub-request-container'>
+		<div class='soonest sub-requests'>
+			<%= render partial: 'sub_request_list', locals: {sub_requests: @soonest} %>
+		</div>
+		<div class='newest sub-requests' hidden>
+			<%= render partial: 'sub_request_list', locals: {sub_requests: @newest} %>
+		</div>
+		<div class='sport sub-requests' hidden>
+			<%= render partial: 'sub_request_list', locals: {sub_requests: @sport} %>
+		</div>
+	</div>
+<% elsif !@soonest.present? && @other_sub_requests.present? %>
+	<div class='other-sub-requests'>
+		<br>
+		<i class="fa fa-rss"></i><br>
+		<h4>We couldn't find any games that fit your sports. However, we found <strong><%= pluralize(@other_sub_requests.count, 'upcoming game') %></strong> from other sports in your area.</h4>
+	</div>
+	<div class='sub-request-container'>
+		<%= render partial: 'sub_request_list', locals: {sub_requests: @other_sub_requests} %>
+	</div>
+<% end %>
+
+<script>
+	$('.content').on('click','.sub-in-container',function() {
+		$('.sub-modal-state').prop('checked', true);
+
+		id = $(this).data('id')
+		$.get('/sub_requests/' + id + '/details?sub=true', function(response) {
+			$('.sub-body').html(response);
+		});
+	});
+
+	$('.sub-in-button').on('click', function() {
+		id = $(this).attr('id')
+		$.get('/sub_requests/' + id + '/details?sub=true', function(response) {
+			$('.sub-body').html(response);
+		});
+	});
+
+	$('.filter-link').on('click', function() {
+		$('.filter-link').removeClass('active');
+		$(this).addClass('active');
+		filter = $(this).attr('id')
+		$('.sub-requests').hide();
+		$('.' + filter).show();
+	});
+
+	$('.clickable-grid-container').hover( 
+		function() {
+			$(this).find('.cover').removeClass('hidden')
+		}, function() {
+			$(this).find('.cover').addClass('hidden')
+		}
+	);
+
+	sub_request = window.location.search.substring(1)
+	id = sub_request.split('=')[1]
+
+	$(function() {
+		$('#' + id).click();
+	});
+
+</script>

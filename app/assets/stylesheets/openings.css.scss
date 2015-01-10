@@ -1,0 +1,211 @@
+.opening-information-section {
+	@include position(relative);
+	@include span-columns(6);
+
+	@include media($small-width) {
+		@include span-columns(5);
+	}
+
+	.opening-information {
+		width: 100%;
+		@include position(absolute, 50% 50% null null);
+		@include transform(translate(50%,-50%));
+
+		h3, h5 {
+			text-align: left;
+		}
+
+		h5 {
+			color: #7cb437;
+		}
+	}
+}
+
+.opening-icon-section {
+	@include position(relative);
+	@include span-columns(3);
+
+	i {
+		@include position(absolute, 50% 50% null null);
+		@include transform(translate(50%,-50%));
+	}
+}
+
+.opening-sub-in {
+	display: block;
+	@include span-columns(3);
+
+	@include media($small-width) {
+		@include span-columns(4);
+	}
+}
+
+.options-button {
+	background-color: #f39c12;
+	border-radius: 10px;
+	padding: 5px 10px;
+	z-index: 100;
+	width: 100px;
+	@include position(absolute, 50% 10px null null);
+	@include transform(translateY(-50%));
+}
+
+.share-button {
+	z-index: 100;
+	font-size: 2rem;
+	@include position(absolute, 50% 150px null null);
+	@include transform(translateY(-50%));
+	display: none;
+}
+
+#textModal {
+	i {
+		font-size: 2rem;
+	}
+}
+
+.sport-image {
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+}
+
+.sport-icon-container {
+	height: 60px;
+	width: 60px;
+	border-radius: 50px;
+	@include position(absolute, 50% 50% null null);
+	@include transform(translate(50%,-50%));
+	background-color: #7cb437;
+}
+
+@media (min-width: 800px) {
+	.sport-opening {
+		width: 700px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.opening-icon-section {
+		@include span-columns(3);
+	}
+
+	.opening-information-section {
+		@include span-columns(6);
+	}
+
+	// .opening-time {
+	// 	@include span-columns(3);
+	// }
+
+	.opening-sub-in {
+		display: block;
+		@include span-columns(3);
+	}
+
+	.hidden-sub-in {
+		display: none;
+	}
+}
+
+.filter-link {
+	margin-left: 10px;
+	margin-right: 10px;
+	text-decoration: underline;
+
+	&:hover, &.active {
+		text-decoration: none;
+		font-weight: bold;
+	}
+}
+
+.sort-games {
+	font-size: 0.8rem;
+	text-align: left;
+	color: white;
+}
+
+.location {
+	text-align: right;
+	font-size: 0.7rem;
+	margin-bottom: 10px;
+}
+
+.share-icon {
+	@include position(absolute, 50% 125px null null);
+	@include transform(translateY(-50%));
+}
+
+.close-share {
+	@include position(absolute, 50% 175px null null);
+	@include transform(translateY(-50%));
+}
+
+.facebook-share {
+	@include position(absolute, 50% 125px null null);
+	@include transform(translateY(-50%));
+}
+
+.twitter-share {
+	@include position(absolute, 50% 75px null null);
+	@include transform(translateY(-50%));
+}
+
+.link-share {
+	@include position(absolute, 50% 25px null null);
+	@include transform(translateY(-50%));
+}
+
+.other-sub-requests {
+	padding-top: 25px;
+	margin-bottom: 25px;
+	border-top: $white-borders;
+
+	&.first {
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	&.empty {
+		border-top: 0;
+		border-bottom: $white-borders;
+	}
+
+	i {
+		font-size: 2rem;
+	}
+}
+
+.mygames-cta {
+	display: block;
+	text-align: left;
+	text-decoration: underline;
+	font-size: 0.8rem;
+}
+
+// sub request details modal
+
+.request_details_container {
+	@include outer-container;
+	@include row(table);
+}
+
+.icon-container {
+	@include span-columns(3);
+	@include position(relative);
+}
+
+.request-categories {
+	@include span-columns(3);
+
+	p {
+		font-size: 0.8rem;
+	}
+}
+
+.request-information {
+	@include span-columns(6);
+
+	p {
+		font-size: 0.8rem;
+	}
+}

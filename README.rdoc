@@ -1,0 +1,3 @@
+ssh -i Subzie-SRV1.pem ec2-user@srv1.subzie.com
+cd /var/www
+./deploy

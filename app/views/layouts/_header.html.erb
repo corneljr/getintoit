@@ -1,0 +1,56 @@
+<header>
+
+  <% if current_user %>
+    <%= link_to sub_requests_path do %>
+      <%= image_tag 'logo-transparent.png', id: 'header-logo' %>
+    <% end %>
+    <div class='header-nav'>
+      <div class='nav-item-container active'>
+        <%= link_to sub_requests_path, remote: true, class: 'header-link' do %>
+          <p>Openings</p>
+          <i class="fa fa-futbol-o"></i>
+        <% end %>
+        <div class='arrow-down active'></div>
+      </div>
+      <div class='nav-item-container'>
+        <%= link_to player_path(current_user), remote: true, class: 'header-link' do %>
+          <p>My Games</p>
+          <i class="fa fa-briefcase"></i>
+        <% end %>
+        <div class='arrow-down'></div>
+      </div>
+      <div class='nav-item-container'>
+        <%= link_to new_sub_request_path, remote: true, class: 'header-link' do %>
+          <p>Find a Sub</p>
+          <i class="fa fa-search"></i>
+        <% end %>
+        <div class='arrow-down'></div>
+      </div>
+    </div>
+
+    <div class='right-nav'>
+      <%= link_to 'SETTINGS', '#', class: 'settings-link' %>&nbsp;|&nbsp;<%= link_to 'LOGOUT', session_path(current_user), method: 'DELETE', class: 'logout-link'%>
+    </div>
+    
+    <div class="dropdown-container">
+      <i id='mobile-dropdown' class="fa fa-bars"></i>
+    </div>
+  <% else %>
+    <%= link_to root_path do %>
+      <%= image_tag 'logo-transparent.png', id: 'signup-logo' %>
+    <% end %>
+  <% end %>
+</header>
+<div class='header-border'></div>
+
+<% if current_user %>
+  <div class='nav-overlay'>
+    <div class='nav-buttons'>
+      <%= link_to 'Openings', sub_requests_path, class: 'btn-nav' %>
+      <%= link_to 'My Games', player_path(current_user), class: 'btn-nav' %>
+      <%= link_to 'Find a Sub', new_sub_request_path, class: 'btn-nav' %>
+      <%= link_to 'My Settings', edit_player_path(current_user), class: 'btn-nav' %>
+      <%= link_to 'Log out', session_path(current_user), method: 'DELETE', class: 'btn-nav' %>
+    </div>
+  </div>
+<% end %>

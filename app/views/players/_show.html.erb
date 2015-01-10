@@ -1,0 +1,139 @@
+<div class='main-title'>
+	<h3>My Games</h3>
+</div>
+
+
+
+<div class='other-sub-requests first <%= @subs.empty? ? "empty" : "" %>'>
+	<br>
+	<%= image_tag 'upcoming-sub-icon.png', width: '30' %><br>
+	<h4>You have <strong><%= pluralize(@subs.count,'upcoming game') %></strong>.</h4>
+</div>
+<% if @subs.present? %>
+	<div class='game-container upcoming-game-container'>
+		<% @subs.each do |sub| %>
+			<div class='clickable-grid-container upcoming-sub-container' data-id='<%= sub.id %>'>
+				<div class='cover hidden'></div>
+				<div class='opening-icon-section'>
+					<div class='sport-icon-container'>
+						<%= image_tag "#{sub.sport.name.split(' ').join('_')}.png", width: '30', class: 'sport-image' %>
+					</div>
+				</div>
+				<div class='opening-information-section'>
+					<div class='opening-information'>
+						<h3><strong><%= sub.sport.name.capitalize %></strong></h3>
+						<h5><span style='text-decoration:underline;'><%= sub.venue.address %>, <%= sub.city.name %></span></h5>
+						<h5><%= sub.start_time.strftime("%B %d, %Y at %l:%M%P") %></h5>
+					</div>
+				</div>
+				<div class='opening-sub-in'>
+					<%= link_to 'Details', '#', id: sub.id, class: 'upcoming-sub-button options-button' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% else %>
+	<%= link_to 'Find a game', sub_requests_path, class: 'mygames-cta' %>
+<% end %>
+
+<div class='other-sub-requests <%= @sub_requests.empty? ? "empty" : "" %>'>
+	<br>
+	<%= image_tag 'sub-requests-icon.png', width: '30' %>
+	<h4>You have <strong><%= pluralize(@sub_requests.count,'sub request') %></strong>.</h4>
+</div>
+<% if @sub_requests.present? %>
+	<div class='game-container sub-requests-container'>
+		<% @sub_requests.each do |sub_request| %>
+			<div class='clickable-grid-container my-sub-request-container' data-id='<%= sub_request.id %>'>
+				<div class='cover hidden'></div>
+				<div class='opening-icon-section'>
+					<div class='sport-icon-container'>
+						<%= image_tag "#{sub_request.sport.name.split(' ').join('_')}.png", width: '30', class: 'sport-image' %>
+					</div>
+				</div>
+				<div class='opening-information-section'>
+					<div class='opening-information'>
+						<h3><strong><%= sub_request.sport.name.capitalize %></strong></h3>
+						<h5><span style='text-decoration:underline;'><%= sub_request.venue.address %>, <%= sub_request.city.name %></span></h5>
+						<h5><%= sub_request.start_time.strftime("%B %d, %Y at %l:%M%P") %></h5>
+					</div>
+				</div>
+				<div class='opening-sub-in'>
+					<%= link_to 'Details', '#', id: sub_request.id, class: 'my-sub-request-button options-button' %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% else %>
+	<%= link_to 'Find a sub', new_sub_request_path, class: 'mygames-cta' %>
+<% end %>
+
+<script>
+	$('.upcoming-sub-button').on('click', function() {
+		id = $(this).attr('id')
+		$.get('/sub_requests/' + id + '/details?upcoming_sub=true', function(response) {
+			$('.body').html(response);
+		});
+	});
+
+	$('.content').on('click','.upcoming-sub-container',function() {
+
+		$('.details-modal-state').prop('checked', true);
+
+		id = $(this).data('id')
+		$.get('/sub_requests/' + id + '/details?upcoming_sub=true', function(response) {
+			$('.body').html(response);
+		});
+	});
+
+	$('.my-sub-request-button').on('click', function() {
+		id = $(this).attr('id')
+		$.get('/sub_requests/' + id + '/details?my_request=true', function(response) {
+			$('.body').html(response);
+		});
+	});
+
+	$('.content').on('click','.my-sub-request-container',function() {
+
+		$('.details-modal-state').prop('checked', true);
+
+		id = $(this).data('id')
+		$.get('/sub_requests/' + id + '/details?my_request=true', function(response) {
+			$('.body').html(response);
+		});
+	});
+
+	$('#game-select').on('change', function() {
+		value = $(this).val();
+		$('.game-container').hide();
+		if (value === 'upcoming') {
+			$('.upcoming-game-container').show();
+		} else if (value === 'requests') {
+			$('.sub-requests-container').show();
+		} else {
+			$('.past-games-container').show();
+		}
+	});
+
+	$('.tabs').on('click', function() {
+		$('.tabs').removeClass('active');
+		$(this).addClass('active');
+		value = $(this).attr('id');
+		$('.game-container').hide();
+		if (value === 'upcoming') {
+			$('.upcoming-game-container').show();
+		} else if (value === 'requests') {
+			$('.sub-requests-container').show();
+		} else {
+			$('.past-games-container').show();
+		}
+	});
+
+	$('.clickable-grid-container').hover( 
+		function() {
+			$(this).find('.cover').removeClass('hidden')
+		}, function() {
+			$(this).find('.cover').addClass('hidden')
+		}
+	);
+</script>

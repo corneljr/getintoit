@@ -1,0 +1,11 @@
+<div class='opening-details-container'>
+	<% if @for_sub %>
+		<%= render partial: 'subin_modal' %>
+  <% elsif @upcoming_sub %>
+  	<%= render partial: 'upcoming_sub_modal' %>
+  <% elsif @my_request %>
+  	<%= render partial: 'request_details_modal' %>
+  <% end %>
+</div>
+
+

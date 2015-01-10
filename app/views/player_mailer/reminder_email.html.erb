@@ -1,0 +1,9 @@
+<h3>Hey <%= @user.first_name %>,</h3>
+<h4>We just wanted to remind you about your <%= @sub_request.sport.name %> game today! Here are the details of your game:</h4>
+<ul>
+	<li><strong>Team: </strong><%= @sub_request.team.name %></li>
+	<li><strong>Game time: </strong><%= @sub_request.start_time.strftime('%A %B %d, %Y') %> at <%= @sub_request.start_time.strftime("%l:%M %p") %></li>
+	<li><strong>Location: </strong><%= @sub_request.venue.name %>, <%= @sub_request.venue.address %></li>
+</ul>
+<p>Go rip it up!</p>
+<p>The Subzie Team</p>

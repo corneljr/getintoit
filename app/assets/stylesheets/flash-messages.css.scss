@@ -1,0 +1,77 @@
+$flash-red: #FBE3E4;
+$flash-yellow: #FFF6BF;
+$flash-green: #E6EFC2;
+$base-spacing: 20px;
+
+%flash-base {
+  position:absolute;
+  display: block;
+  font-weight: bold;
+  margin-bottom: $base-spacing / 2;
+  padding: 5px;
+  width: 55%;
+}
+
+.flash-alert {
+  @extend %flash-base;
+  background: $flash-yellow;
+  color: darken($flash-yellow, 60);
+
+  a {
+    color: darken($flash-yellow, 70);
+    border-bottom: 1px solid transparentize(darken($flash-yellow, 70), .7);
+
+    &:hover {
+      color: darken($flash-yellow, 90);
+    }
+  }
+}
+
+.flash-error {
+  @extend %flash-base;
+  background: $flash-red;
+  color: darken($flash-red, 60);
+
+  a {
+    color: darken($flash-red, 70);
+    border-bottom: 1px solid transparentize(darken($flash-red, 70), .7);
+
+    &:hover {
+      color: darken($flash-red, 90);
+    }
+  }
+}
+
+.flash-notice {
+  $color: lighten($base-accent-color, 40);
+
+  @extend %flash-base;
+  background: $color;
+  color: darken($color, 60);
+
+  a {
+    color: darken($color, 70);
+    border-bottom: 1px solid transparentize(darken($color, 70), .7);
+
+    &:hover {
+      color: darken($color, 90);
+    }
+  }
+}
+
+.flash-success {
+  $color: $flash-green;
+  
+  @extend %flash-base;
+  background: $color;
+  color: darken($color, 60);
+
+  a {
+    color: darken($color, 70);
+    border-bottom: 1px solid transparentize(darken($color, 70), .7);
+
+    &:hover {
+      color: darken($color, 90);
+    }
+  }
+}

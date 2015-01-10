@@ -1,0 +1,374 @@
+// Place all the styles related to the players controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face {
+  font-family: 'Avenir';
+  src: font-url('avenir.ttc') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font: 'Avenir', sans-serif;
+$orange: #3498db;
+$small-width: 400px;
+$medium-width: 600px;
+$large-width: 900px;
+$white-borders: 1px solid rgba(255,255,255,.2);
+
+*, *:after, *:before {
+	@include box-sizing(border-box)
+}
+
+h1,h2,h3,h4,h5,h6,p {
+	margin: 0;
+	font-weight: normal;
+}
+
+body {
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+	font-family: $font;
+	color: white;
+	text-align: center;
+	height: 100%;
+	@include background-image( linear-gradient(to bottom, #041b27, #03111d));
+	min-height: 600px;
+}
+
+input {
+	border: none;
+
+	&:disabled {
+		background-color: #bdc3c7;
+	}
+}
+
+input[type=range] {
+	-webkit-appearance: none;
+	background-color: black;
+	border: 1px solid white;
+	height: 10px;
+	border-radius: 15px;
+	width: 80%;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+ul {
+	padding: 0;
+}
+
+button {
+	border: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 20px;
+}
+
+input.full-width-input {
+	height: 35px;
+	padding-left: 10px;
+	font-size: 0.9rem;
+	margin-bottom: 10px;
+	width: 100%;
+	outline: none;
+
+	&.ng-invalid {
+		&.ng-dirty {
+			border: 2px solid red;		
+		}
+	}
+
+	&.ng-valid {
+		&.ng-dirty {
+			border: 2px solid green;			
+		}
+	}
+}
+
+a {
+	color: white;
+	text-decoration: none;
+
+	&:visited {
+		color: white;
+	}
+}
+
+.application-container {
+	position: relative;
+	min-height: 100%;
+	@include outer-container;
+}
+
+.content {
+	padding: 10px;
+	@include span-columns(12);
+
+	@media (min-width: $medium-width) {
+		@include span-columns(7);
+		@include shift(2.5);
+	}
+}
+
+.btn-submit {
+	background-color: #f39c12;
+	border-radius: 5px;
+	padding: 10px 15px;
+	color: white;
+	font-size: 0.9rem;
+
+	&.disabled {
+		pointer-events: none;
+		cursor: default;
+		background-color: #7f8c8d;
+	}
+}
+
+.btn-cancel {
+	background-color: transparent;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 8px 13px;
+	color: white;
+	font-size: 0.9rem;
+}
+
+.btn-secondary {
+	display: block;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 1rem;
+	padding: 7px;
+	background-color: #27ae60;
+	color: white;
+
+	&.disabled {
+		pointer-events: none;
+		cursor: default;
+		background-color: #7f8c8d;
+		color: #bdc3c7;
+	}
+}
+
+ul {
+	list-style: none;
+
+	&.horizontal {
+		li {
+			display:inline;
+		}
+	}
+}
+
+.input-icon-field {
+	height: 30px;
+	@include outer-container;
+	@include row(table);
+}
+
+.input-icon {
+	margin: 1px;
+	background-color: #f2f2f2;
+	border: 1px solid #cccccc;
+	@include span-columns(2);
+	@include pad();
+
+	i {
+		color: #999;
+	}
+}
+
+.input-field-with-icon {
+	@include span-columns(10);
+
+	input {
+		padding-left: 5px;
+		font-size: 0.9rem;
+		height: 100%;
+		width: 100%;
+	}
+}
+
+.full-width-input-label {
+	display: block;
+	text-align: left;
+	font-size: 0.9rem;
+}
+
+.input-container {
+	width: 100%;
+
+	@media (min-width: $medium-width) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.button-container {
+	width: 100%;
+	text-align: center;
+}
+
+.hidden {
+	display: none;
+}
+
+.submit-container {
+	margin-top: 30px;
+	position: relative;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	text-align: left;
+
+	@media (min-width: $medium-width) {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.badge { 
+  @include inline-block;
+  @include position(relative);
+  background: grey;
+  border-radius: 5em;
+  color: white;
+  font-size: 0.8rem;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+
+  &.active {
+    background: #f39c12;
+
+    p {
+    	font-weight: bold;
+    }
+  }
+
+  p {
+  	margin-right: 0px !important;
+  	@include position(absolute, 50% 50% null null);
+  	@include transform(translate(50%,-50%));
+  	position: absolute;
+  }
+ }
+
+ .subin-container {
+ 	height: 75px;
+ 	width: 90%;
+	border-top: 1px solid rgba(255,255,255,.3);
+	border-bottom: 1px solid rgba(255,255,255,.3);
+	@include outer-container;
+	@include position(relative);
+	@include row(table);
+
+	.cover {
+		background-color: rgba(31, 205, 109, 0.15);
+		z-index: 10;
+		height: 100%;
+		width: 100%;
+		@include position(absolute, 0 null null 0);
+	}	
+ }
+
+.clickable-grid-container {
+	height: 75px;
+	border-top: 1px solid rgba(255,255,255,.3);
+	@include outer-container;
+	@include position(relative);
+	@include row(table);
+
+	.cover {
+		background-color: rgba(31, 205, 109, 0.1);
+		z-index: 10;
+		height: 100%;
+		width: 100%;
+		@include position(absolute, 0 null null 0);
+	}	
+
+	@include media($small-width) {
+		height: 80px;
+	}
+}
+
+.section-select {
+	background: #f6f6f6;
+	border: 1px solid #ddd;
+	border-radius: 5px !important;
+	text-indent: 10px;
+  width: 268px;
+  padding: 5px;
+  font-size: 13px;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  outline: none;
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  -moz-appearance: none;
+  -moz-user-select: none;
+  -ms-appearance: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+  box-shadow: 0px 1px 3px rgba(0,0,0,.15);
+  display:inline-block;
+}
+
+.select-wrapper {
+	position: relative;
+	display: inline-block;
+	width: 268px;
+
+	&:after {
+		content: '';
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-image: url('dropdown.png');
+		background-size: 100%;
+		@include position(absolute, 50% 10px null null);
+		@include transform(translateY(-50%));
+		height: 22px;
+		width: 22px;
+		pointer-events: none;
+	}
+}
+
+.success-box {
+	padding: 10px;
+	display: block;
+	background-color: #27ae60;
+}
+
+.main-title {
+	position: relative;
+	top: -60px;
+	z-index: 110;
+	color: white;
+	
+	@include media($small-width) {
+		top: -80px;
+	} 
+}
+
+#slidr-div{
+	display: inline-block;
+	font-weight: 700;
+	line-height: 0.8;
+	min-height: 10px;
+	min-width: 30px;
+	color: #f39c12;
+}

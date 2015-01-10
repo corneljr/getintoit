@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%= stylesheet_link_tag    'application', media: 'all' %>
+	<script type="text/javascript" src="assets/slidr.js"></script>
+	<%= csrf_meta_tags %>
+	<title>Subzie</title>
+</head>
+<body>
+	<%= yield %>
+
+	<script>
+	slidr.create('slidr-div', {
+          controls: 'none',
+          transition: 'linear',
+          overflow: 'true'
+        }).add('h', ['one', 'two', 'three', 'four', 'one'])
+          .auto(1500);
+  </script>
+</body>
+</html>

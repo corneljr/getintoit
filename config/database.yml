@@ -1,0 +1,40 @@
+
+# base: &base
+#  adapter: mysql2
+#  encoding: utf8
+#  host: localhost
+#  username: subsy
+#  password: subsy
+#  socket: /var/run/mysqld/mysqld.sock
+#
+# development:
+#  <<: *base
+#  database: subsy_dev
+#
+# test:
+#  <<: *base
+#  database: subsy_test
+#
+# production:
+#  <<: *base
+#  database: subsy_prod
+
+development:
+  adapter:  postgresql
+  encoding: unicode
+  host:     localhost
+  pool:     20
+  database: subsy_development
+
+test:
+  adapter:  postgresql
+  encoding: unicode
+  host:     localhost
+  pool:     20
+
+production:
+  adapter:  postgresql
+  encoding: unicode
+  host:     localhost
+  pool:     100
+  database: subsy_production

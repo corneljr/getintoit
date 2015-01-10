@@ -1,0 +1,182 @@
+$base-background-color: black;
+$header-starting-background-color: #3498db;
+$header-ending-background-color: #2c9597;
+$light-gray: #bdc3c7;
+$base-font-size: 1rem;
+$base-font-color: white;
+$base-line-height: 1;
+$medium-screen: 800px;
+$base-border-radius: 5px;
+$large-screen: 800px;
+
+.details-modal {
+  $modal-padding: 2em;
+  $modal-background: $base-background-color;
+  $modal-close-color: $light-gray;
+  $modal-image-height: 135px;
+  $modal-image-width: $modal-image-height;
+
+  label {
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  label img {
+    $img-width: 300px;
+    border-radius: $img-width/2;
+    display: block;
+    max-width: $img-width;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .btn {
+    @include button(simple, $base-background-color);
+    font-size: $base-font-size;
+    margin-bottom: $base-line-height;
+  }
+
+  .modal-open {
+    overflow: hidden;
+  }
+
+  .details-modal-window { 
+    @include transition(opacity .25s ease);
+    @include position(fixed, 0px 0px 0px 0px);
+    background: rgba(0,0,0, .5);
+    opacity: 0;
+    text-align: left;
+    visibility: hidden;
+    z-index: 99999999999;
+
+    .modal-bg {
+      @include position(absolute, 0px 0px 0px 0px);
+      cursor: pointer;
+    }
+  }
+
+  .details-modal-close {
+    @include position(absolute, ($modal-padding /4) ($modal-padding /4) 0 null);
+    @include size(1.5em);
+    cursor: pointer;
+    background: transparent;
+
+    &:after,
+    &:before {
+      @include position(absolute, 3px 3px 0 50%);
+      @include transform(rotate(45deg));
+      @include size(.15em 1.5em);
+      background: $modal-close-color;
+      content: '';
+      display: block;
+      margin: -3px 0 0 -1px;
+    }
+
+    &:hover:after,
+    &:hover:before {
+      background: darken($modal-close-color, 10);
+    }
+
+    &:before {
+      @include transform(rotate(-45deg));
+    }
+  }
+
+  .details-modal-inner {
+    @include transition(opacity .25s ease);
+    border-radius: $base-border-radius;
+    border: $white-borders;
+    background: $modal-background;
+    margin: auto;
+    position: relative;
+    overflow: auto;
+    width: 95%;
+    padding-top: 75px;
+    margin-top: 3em;
+
+    @include media($medium-screen) {
+      width: 60%;
+      max-height: 80%;
+      margin-top: 10em;
+    }
+
+    @include media($large-screen) {
+      width: 50%;
+      margin-top: 10em;
+    }
+
+    h2 {
+      color: $base-font-color;
+      margin-bottom: .6em;
+      text-align: left;
+      text-transform: capitalize;
+    }
+
+    p.intro {
+      font-size: 0.8rem;
+      max-width: 100% !important;
+      text-align: center;
+
+      &.intro {
+        color: $base-font-color;
+        line-height: 1.6em;
+      }
+    }
+
+    div.opening-details-container {
+      color: $base-font-color;
+    }
+
+    .modal-header {
+      @include position(absolute, 0px 0px null null);
+      height: 75px;
+      width: 100%;
+      @include background-image( linear-gradient(to bottom, $header-starting-background-color, $header-ending-background-color) );
+
+      .modal-title {
+        @include position(absolute, 50% 50% null null);
+        @include transform(translate(50%,-50%));
+      }
+    }
+
+    .details-body {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .details-container {
+      text-align: center;
+      border-top: $white-borders;
+      border-bottom: $white-borders;
+      height: 150px;
+      width: 90%;
+      margin: auto;
+      @include position(relative);
+
+      .cover {
+        background-color: rgba(31, 205, 109, 0.15);
+        z-index: 10;
+        height: 100%;
+        width: 100%;
+        @include position(absolute, 0 null null 0);
+      }
+    }
+  }
+
+  .details-modal-state:checked + .details-modal-window {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .details-modal-state:checked + .details-modal-window .details-modal-inner {
+    top: 0;
+  }
+}
+
+.details-actions {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}

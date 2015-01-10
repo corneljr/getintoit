@@ -1,0 +1,77 @@
+<div class='player-sports-headers'>
+	<div class='player-sports-icon'>
+		<p><small>Sport</small></p>
+	</div>
+	<div class='player-sports-name'></div>
+	<div class='player-sports-coed'>
+		<p style='display:inline;'><small>Coed</small>&nbsp;&nbsp;</p>
+		<div class='tooltip-item'>
+			<i style='font-size:0.8rem;' class="fa fa-question"></i>
+			<div class='tooltip'><p>Select whether you would like to see co-ed sub requests.</p></div>
+		</div>
+	</div>
+	<div class='player-sports-skill'>
+		<p style='display:inline;'><small>Skill Level</small>&nbsp;&nbsp;</p>
+		<div class='tooltip-item'>
+			<i style='font-size:0.8rem;' class="fa fa-question"></i>
+			<div class='tooltip'>
+				<p>Estimate your skill level in the sport from 1 star (You've only played the sport a few times) to 5 stars (You're an all-star)</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% Sport.all.each do |sport| %>
+	<% sport_name = sport.name.split(' ').join('_') %>
+	<%= f.fields_for :player_sports, @player.player_sports.build do |s| %>
+		<div class='sport-list-item <%= sport_name %>_container'>
+			<div class='player-sports-icon'>
+				<div class='player-sport-icon-container' id='icon_<%= sport_name %>'>
+				<%= image_tag "#{sport_name}.png", width: '20', class: 'sport-image' %>
+				</div>
+			</div>
+			<div class='player-sports-name'>
+				<h4><%= sport.name.capitalize %></h4>
+			</div>
+			<div class='player-sports-coed'>
+				<%= s.check_box :play_coed, class: "coed_#{sport_name} hidden" %>
+				<i class='play_coed fa fa-circle-thin' id="coed_<%= sport_name %>"></i>
+			</div>
+			<div class='player-sports-skill'>
+				<ul class='star-rating'>
+					<li class='star skill_0' data-sport='<%= sport_name %>' data-level='0'><i class='star fa fa-star-o star_<%= sport_name %>'></i></li>
+					<li class='star skill_1' data-sport='<%= sport_name %>' data-level='1'><i class='star fa fa-star-o star_<%= sport_name %>'></i></li>
+					<li class='star skill_2' data-sport='<%= sport_name %>' data-level='2'><i class='star fa fa-star-o star_<%= sport_name %>'></i></li>
+					<li class='star skill_3' data-sport='<%= sport_name %>' data-level='3'><i class='star fa fa-star-o star_<%= sport_name %>'></i></li>
+					<li class='star skill_4' data-sport='<%= sport_name %>' data-level='4'><i class='star fa fa-star-o star_<%= sport_name %>'></i></li>
+					<%= s.hidden_field :skill_level, class: sport_name %>
+					<%= s.hidden_field :sport_id, value: sport.id %>
+					<%= s.hidden_field :skill_rating, class: sport_name %>
+				</ul>
+			</div>
+			<div class='player-sports-remove'>
+				<i class="remove_sport fa fa-times" id="remove_<%= sport_name %>"></i>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<%= javascript_tag do %>
+	var sports = $.parseJSON('<%= raw Player.prepare_sports(current_user.id) %>');
+
+	$.each(sports, function(index, value) {
+		var self = $('.' + value.sport + '_container');
+		self.find('.player-sport-icon-container').addClass('playing');
+		var star = self.find('.skill_' + value.skill);
+		star.children().addClass('full fa-star');
+		star.children().removeClass('fa-star-o');
+		star.prevAll().children().addClass('full fa-star');
+		star.prevAll().children().removeClass('fa-star-o');
+		star.nextAll().children().addClass('fa-star-o');
+		star.nextAll().children().removeClass('fa-star full');
+		$('.' + value.sport).val(value.skill)
+		$('.coed_' + value.sport).attr('checked', value.play_coed);
+		$('#coed_' + value.sport).toggleClass('fa-circle-thin');
+		$('#coed_' + value.sport).toggleClass('fa-check-circle');
+	});
+<% end %>

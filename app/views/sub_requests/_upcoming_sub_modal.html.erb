@@ -1,0 +1,17 @@
+<div class='opening-details-container'>
+  <p class="intro">Here are your game details.</p>
+  <br>
+  <div class='details-container'>
+  	<div class='cover'></div>
+  	<br>
+  	<h3><strong><%= @sub_request.team.name %></strong></h3>
+  	<p style='color:#7cb437;'><%= @sub_request.venue.name %>,<%= @sub_request.venue_specific %>&nbsp;|&nbsp;<%= @sub_request.venue.address %>&nbsp;|&nbsp;<%= @sub_request.start_time.strftime("%B %d, %Y at %l:%M%P") %></p>
+  	<br>
+  	<p><strong>Your contact is <%= "#{@sub_request.poster.first_name} #{@sub_request.poster.last_name} (#{@sub_request.poster.email})" %></strong></p>
+  	<p>Show up at least 30 mins prior to the game.</p>
+	</div>
+	<br>
+</div>
+
+
+

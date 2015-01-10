@@ -1,0 +1,65 @@
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :first_name, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :first_name, placeholder: 'First Name', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :last_name, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :last_name, placeholder: 'Last Name', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :email, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.email_field :email, placeholder: 'Email', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :password, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.password_field :password, placeholder: 'Password', 'required' => 'required', class: 'input-field'%>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :password_confirmation, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.password_field :password_confirmation, placeholder: 'Password confirmation', 'required' => 'required', class: 'input-field'%>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :birth_date, 'Date of Birth',class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :birth_date, placeholder: 'MM/DD/YYYY', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :sex, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<div class='select-wrapper'>
+			<%= f.select :sex, options_for_select(['male','female']), {}, class: 'input-field section-select' %>
+		</div>
+	</div>
+</div>
+

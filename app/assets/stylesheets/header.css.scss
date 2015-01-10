@@ -1,0 +1,160 @@
+header {
+  // @include background-image( linear-gradient(to bottom, #3498db, #2980b9));
+  margin: -1px 0px -1px;
+  position: relative;
+  text-align: center;
+  display: block;
+  color: white;
+  height: 150px;
+  width: 100%;
+  
+  @include background-image(url('header-image.png'));
+  -moz-background-size:auto auto;
+  background-size:auto auto;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow:hidden;
+}
+
+#signup-logo {
+  @include position(absolute, 15px 50% null null);
+  @include transform(translateX(50%));
+}
+
+.header-border {
+  @include background-image(url('gradient-strip.png'));
+  -moz-background-size:100% 100%;
+  background-size:100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow:hidden;
+  height: 4px;
+}
+
+#header-logo {
+  height: 30px;
+  @include position(absolute, 15px null null 10px);
+}
+
+.header-nav {
+  position: absolute;
+  height: 60px;
+  @include position(absolute, 0px null null 50%);
+  @include transform(translate(-50%, 0));
+  width: 350px;
+}
+
+.nav-item-container {
+  width: 33%;
+  float: left;
+  height: 48px;
+
+  i {
+    margin-top: 5px;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin-top: 7px;
+    font-size: 0.8rem;
+  }
+
+  &.active {
+    background-color: #f39c12;
+  }
+}
+
+.arrow-down {
+  position: relative;
+  top: -7px;
+  height: 0;
+  width: 0;
+
+  &.active {
+    border-left: 58px solid transparent;
+    border-right: 58px solid transparent;
+    border-top: 20px solid #f39c12;
+  }
+}
+
+.header-link {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+
+@media (min-width: 700px) {
+  .dropdown {
+    display: none;
+  }
+
+  #mobile-dropdown {
+    display:none;
+  }
+}
+
+@media (max-width: 700px) {
+  .header-nav {
+    display: none;
+  }
+
+  .settings-nav {
+    display: none;
+  }
+
+  .log-out-nav {
+    display: none;
+  }
+
+  .right-nav {
+    display: none;
+  }
+
+  .location {
+    display: none;
+  }
+}
+
+.dropdown-container {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+#mobile-dropdown {
+  font-size: 1.5rem;
+}
+
+.nav-overlay {
+  @include transition(opacity .25s ease);
+  @include position(fixed, 0px 0px 0px 0px);
+  background: rgba(0,0,0, .85);
+  text-align: center;
+  visibility: hidden;
+  z-index: 120;
+}
+
+.btn-nav {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  margin: 10px;
+}
+
+.nav-buttons {
+  @include position(absolute, 50% 50% null null);
+  @include transform(translate(50%,-50%));
+}
+
+.right-nav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.7rem;
+}
+

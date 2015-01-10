@@ -1,0 +1,21 @@
+<table class='availability-table'>
+	<tr>
+		<td></td>
+		<td>Morning<br><small>6am - 12pm</small></td>
+		<td>Daytime<br><small>12pm - 6pm</small></td>
+		<td>Evening<br><small>6pm - 12pm</small></td>
+	</tr>
+	<% [['Mon', 1],['Tue',2],['Wed',3],['Thu',4],['Fri',5],['Sat',6],['Sun',7]].each do |day| %>
+		<tr class='availability-row'>
+			<td><%= day[0] %></td>
+			<% [['morning','6:00:00', '12:00:01'],['afternoon','10:59:59','17:00:01'],['evening','15:59:59','23:59:00']].each do |section| %>
+				<td id='<%= day[0] %>_<%= section[0] %>_cell' data-from='<%= section[1] %>' data-to='<%= section[2] %>' class='select-cell'><i class="add-time fa fa-circle-thin"></i></td>
+				<%= f.fields_for :availabilities, @player.availabilities.build do |a| %>
+					<%= a.hidden_field :day, value: day[1] %>
+					<%= a.hidden_field :available_from, id: "#{day[0]}_#{section[0]}_from" %>
+					<%= a.hidden_field :available_to, id: "#{day[0]}_#{section[0]}_to" %>
+				<% end %>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

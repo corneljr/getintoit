@@ -1,0 +1,38 @@
+<table id='progress-bar'>
+	<tr>
+		<td class='active'></td>
+		<td class='active'></td>
+		<td class='active'></td>
+		<td class='active'></td>
+		<td class='active'></td>
+	</tr>
+</table>
+
+	<ul class='current-step'>
+		<li>
+			<div id='badge-1' class='badge active'><p>1</p></div><p id='title-1' class='active'>PROFILE</p>
+		</li>
+		<li>
+			<div id='badge-2' class='badge active'><p>2</p></div><p id='title-2' class='active'>SPORTS</p>
+		</li>
+		<li>
+			<div id='badge-3' class='badge active'><p>3</p></div><p id='title-3' class='active'>AVAILABILITY</p>
+		</li>
+		<li>
+			<div id='badge-4' class='badge active'><p>4</p></div><p id='title-4' class='active'>TEAMS</p>
+		</li>
+		<li>
+			<div id='badge-5' class='badge'><p>5</p></div><p id='title-5'>PAYMENT INFO</p>
+		</li>
+	</ul>
+
+<div class='padded-container'>
+	<div class='signup-title'>
+		<h3>Your Current Teams.</h3>
+	</div>
+	<div class='section-information'>
+		<p>This is used to ensure you aren't matched with sub requests from your own team or division.</p>
+	</div>
+	<%= render partial: 'player_teams_form' %>
+	<%= link_to "Next", player_payment_info_path(current_user), remote: true, class: 'btn-submit team-button signup-button' %>
+</div>

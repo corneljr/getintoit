@@ -1,0 +1,9 @@
+Hey <%= @user.first_name %>,
+
+Here are the details of your game:
+
+===============================================================
+
+Team: <%= @sub_request.team.name %>
+Game time: <%= @sub_request.start_time.strftime('%A %B %d, %Y') %> at <%= @sub_request.start_time.strftime("%l:%M %p") %>
+Location: <%= @sub_request.venue.name %>, <%= @sub_request.venue.address %>

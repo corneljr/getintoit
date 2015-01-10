@@ -1,0 +1,47 @@
+<div class='feedback-container'>
+	<div class='player_feedback_form'>
+		<h5 style='text-align:center;'>Take a second to review <%= "#{@sub_request.sub.first_name} #{@sub_request.sub.last_name}" %> so we can keep providing the best subs.</h5>
+		<br>
+	  <div class='subin-container'>
+	  	<div class='cover'></div>
+	  	<div class='opening-icon-section'>
+				<div class='sport-icon-container'>
+					<%= image_tag "#{@sub_request.sport.name.split(' ').join('_')}.png", width: '30', class: 'sport-image' %>
+				</div>
+			</div>
+			<div class='opening-information-section'>
+				<div class='opening-information'>
+					<h3><strong><%= @sub_request.sport.name.capitalize %></strong></h3>
+					<h5><span style='text-decoration:underline;'><%= @sub_request.venue.address %></span>, <%= @sub_request.city.name %></h5>
+					<h5><%= @sub_request.start_time.strftime("%B %d, %Y at %l:%M%P") %></h5>
+				</div>
+			</div>
+			<div class='opening-sub-in'>
+			</div>
+		</div>
+		<br>
+
+		<%= form_for @player_feedback do |f| %>
+			<% ['fit_score', 'skill_score', 'punctuality_score','personality_score'].each do |category| %>
+				<ul style='padding-left:0;width:300px;margin:auto;'>
+					<li style='width:150px;display:inline-block;'><%= f.label category, class: 'input-label' %></li>
+					<li class='star' data-sport='<%= category %>' data-level='0'><i class='star fa fa-star-o'></i></li>
+					<li class='star' data-sport='<%= category %>' data-level='1'><i class='star fa fa-star-o'></i></li>
+					<li class='star' data-sport='<%= category %>' data-level='2'><i class='star fa fa-star-o'></i></li>
+					<li class='star' data-sport='<%= category %>' data-level='3'><i class='star fa fa-star-o'></i></li>
+					<li class='star' data-sport='<%= category %>' data-level='4'><i class='star fa fa-star-o'></i></li>
+					<%= f.hidden_field category, class: "#{category}", id: "#{category}" %>
+				</ul>
+			<% end %>
+			<%= f.hidden_field :player_id, value: @sub_request.sub.id %>
+			<%= f.hidden_field :reviewer_id, value: current_user.id %>
+			<%= f.hidden_field :league_id, value: @sub_request.team.league.id %>
+			<%= f.hidden_field :division_id, value: @sub_request.team.division.id %>
+			<%= hidden_field_tag :sub_request_id, nil, value: @sub_request.id %>
+			<div class='submit-container'>
+				<%= f.submit 'Submit Feedback', class: 'btn-submit subin-button' %>
+			</div>
+		<% end %>
+	</div>
+</div>
+<br>

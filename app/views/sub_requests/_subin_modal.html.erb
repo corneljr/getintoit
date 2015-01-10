@@ -1,0 +1,33 @@
+<div class='opening-details-container'>
+  <p class="intro">This game costs $6.99. This will be charged to your credit card upon subbing in.</p>
+  <br>
+  <div class='subin-container'>
+  	<div class='cover'></div>
+  	<div class='opening-icon-section'>
+			<div class='sport-icon-container'>
+				<%= image_tag "#{@sub_request.sport.name.split(' ').join('_')}.png", width: '30', class: 'sport-image' %>
+			</div>
+		</div>
+		<div class='opening-information-section'>
+			<div class='opening-information'>
+				<h3><strong><%= @sub_request.sport.name.capitalize %></strong></h3>
+				<h5><span style='text-decoration:underline;'><%= @sub_request.venue.address %></span>, <%= @sub_request.city.name %></h5>
+				<h5><%= @sub_request.start_time.strftime("%B %d, %Y at %l:%M%P") %></h5>
+			</div>
+		</div>
+		<div class='opening-sub-in'>
+		</div>
+	</div>
+	<br>
+	<% if current_user.stripe_customer_id && current_user.plays?(@sub_request.sport) %>
+		<p style='text-align:center;'>The full set of details will be available once you sub into the game.</p><br>
+		<%= button_to 'Confirm Sub', sub_request_fill_path(@sub_request), class: 'btn-submit subin-button' %>
+	<% elsif current_user.plays?(@sub_request.sport) %>
+		<p style='text-align:center;'>Please <%= link_to 'add payment information', '#', style: 'text-decoration:underline;', data: {'request' => @sub_request.id}, class: 'add-payment-link' %> to sub into this game.</p>
+	<% else %>
+		<p style='text-align:center;'>Please <%= link_to "add #{@sub_request.sport.name}", '#', style: 'text-decoration:underline;', class: 'add-sport-link' %> to sub into this game.</p>
+	<% end %>
+	<br>
+</div>
+
+

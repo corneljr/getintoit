@@ -1,0 +1,84 @@
+<div class='main-title'>
+  <h3>Settings</h3>
+</div>
+
+<div class='medium-screen-size'>
+  <div class='select-wrapper'>
+    <select class='section-select' id="setting-select" data-native-menu="false">
+        <option value='personal'>Personal</option>
+        <option value="sports">Sports</option>
+        <option value="availability">Availability</option>
+        <option value="teams">Teams</option>
+        <option value="payment">Payment</option>
+    </select>
+  </div>
+</div>
+
+<div class='account-creation-container settings' id='personal-settings'>
+  <%= form_for @player do |f| %>
+    <%= render partial: 'player_edit_info_form', locals: {f: f} %>
+    <%= hidden_field_tag :section, nil, value: 'personal' %>
+    <div class='submit-container'>
+      <%= f.submit 'SAVE', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+      <%= link_to 'CANCEL', root_path, 'style' => 'font-size:0.7rem;' %>
+    </div>
+  <% end %>
+</div>
+
+<div class='account-creation-container settings' id='availability-settings' hidden>
+  <%= form_for @player do |f| %>
+    <%= render partial: 'player_edit_availability_form', locals: {f: f} %>
+    <%= hidden_field_tag :section, nil, value: 'availability' %>
+    <div class='submit-container'>
+      <%= f.submit 'SAVE', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+      <%= link_to 'CANCEL', root_path, 'style' => 'font-size:0.7rem;' %>
+    </div>
+  <% end %>
+</div>
+
+<div class='account-creation-container settings' id='sports-settings' hidden>
+  <%= form_for @player do |f| %>
+    <%= render partial: 'player_edit_sports_form', locals: {f: f} %>
+    <%= hidden_field_tag :section, nil, value: 'sports' %>
+    <div class='submit-container'>
+      <%= f.submit 'Save', class: 'btn-submit' %>&nbsp;&nbsp;&nbsp;
+      <%= link_to 'CANCEL', root_path, 'style' => 'font-size:0.7rem;' %>
+    </div>
+  <% end %>
+</div>
+
+<div class='account-creation-container settings' id='teams-settings' hidden>
+  <%= render partial: 'player_teams_form' %>
+  <%= hidden_field_tag :section, nil, value: 'teams' %>
+</div>
+
+<div class='account-creation-container settings' id='payment-settings' hidden>
+  <%= render partial: 'player_edit_card_form' %>
+</div>  
+
+<script>
+  $('#setting-select').on('change', function() {
+    $('.settings').hide();
+    value = $(this).val();
+    console.log(value);
+    $('#' + value + '-settings').show();
+  });
+
+  $('.tabs').on('click', function() {
+    $('.tabs').removeClass('active');
+    $(this).addClass('active');
+    $('.settings').hide();
+    value = $(this).attr('id');
+    $('#' + value + '-settings-modal').show();
+  });
+
+  var section_params = window.location.search.substring(1).split('&')[0]
+  var section = section_params.split('=')[1]
+  
+  if (section && section.length > 1) {
+    $('#' + section).click();
+    $('#setting-select').val(section);
+  }
+</script>
+
+

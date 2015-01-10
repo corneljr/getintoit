@@ -1,0 +1,100 @@
+<div class='input-container'>
+	<div class='label-container'>
+		<%= label_tag :sport, nil, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<div class='select-wrapper'>
+			<%= select_tag :sport_id, options_for_select(@sports), prompt: 'Select a sport.', id: 'sport_select', class: 'input-field section-select' %>
+		</div>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= label_tag :team, nil, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= text_field_tag :team, nil, class: 'input-field team-name' %> 
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= label_tag :division, nil, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= text_field_tag :division, nil, class: 'input-field division-name' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= label_tag :league, nil, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= text_field_tag :league, nil, class: 'input-field league-name' %>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= label_tag :gender, nil, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<div class='select-wrapper'>
+			<%= select_tag :gender, options_for_select([['Male','male'],['Female','female'],['Coed','coed']]), class: 'input-field section-select' %>
+		</div>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= label_tag :skill_level, nil, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<div class='star-container'>
+			<ul class='star-rating'>
+				<li class='star' data-level='0' data-sport='team'><i class='star fa fa-star-o'></i></li>
+				<li class='star' data-level='1' data-sport='team'><i class='star fa fa-star-o'></i></li>
+				<li class='star' data-level='2' data-sport='team'><i class='star fa fa-star-o'></i></li>
+				<li class='star' data-level='3' data-sport='team'><i class='star fa fa-star-o'></i></li>
+				<li class='star' data-level='4' data-sport='team'><i class='star fa fa-star-o'></i></li>
+				<%= hidden_field_tag :skill_level, nil, class: 'team' %>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+<%= javascript_tag do %>
+	
+	$(function() {
+
+		var team_data = $.parseJSON('<%= raw Team.organization_array %>');
+
+		$('.team-name').autocomplete({
+			source: team_data,
+			select: function( event, ui ) {
+				$(this).val(ui.item.value);
+				$(this).siblings('.division-name').val(ui.item.division);
+				$(this).siblings('.league-name').val(ui.item.league);
+
+        return false;
+      }
+		});
+	});
+
+	$(function() {
+
+		var league_data = $.parseJSON('<%= raw League.league_array %>');
+		$('.league-name').autocomplete({
+			source: league_data,
+		});
+	});
+
+	$('.add-a-league').click( function() {
+		$('.league-fields').removeClass('hidden');
+	});
+
+<% end %>

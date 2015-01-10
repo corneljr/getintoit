@@ -1,0 +1,22 @@
+<div class='added-leagues'>
+	<% if @player.teams.present? %>
+		<ul class='current-teams'>
+			<h4>My Current Teams</h4>
+	    <% @player.teams.each do |team| %> 
+	      <li><%= team.name %>&nbsp;&nbsp;<%= link_to 'x', player_destroy_team_path(current_user, team), remote: true, method: :delete %></li>
+	    <% end %>
+	  </ul>
+	<% end %>
+</div>
+
+<div class='add-league-container'>
+	<h4>Add a Team</h4>
+	<div class='team-fields' id='player_teams'>
+		<%= form_tag player_create_teams_path(current_user), id: 'player-teams-form', remote: true do %>
+			<%= render partial: 'players/player_team_fields' %>
+			<div class='submit-container'>
+				<%= submit_tag 'ADD TEAM', class: 'btn-submit disabled', id: 'add-team-button' %>
+			</div>
+		<% end %>
+	</div>
+</div>
