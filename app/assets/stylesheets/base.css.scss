@@ -326,6 +326,10 @@ ul {
   text-overflow: '';
   box-shadow: 0px 1px 3px rgba(0,0,0,.15);
   display:inline-block;
+
+  option {
+  	color: black;
+  }
 }
 
 .select-wrapper {

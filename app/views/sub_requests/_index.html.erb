@@ -57,6 +57,11 @@
 	<div class='sub-request-container'>
 		<%= render partial: 'sub_request_list', locals: {sub_requests: @other_sub_requests} %>
 	</div>
+<% else %>
+	<div class='other-sub-requests'>
+		<i class="fa fa-rss"></i><br>
+		<h4>We couldn't find any games that fit your sports and availabilities. We suggest <%= link_to 'increasing your availability', '#', class: 'increase-availability', style: 'text-decoration:underline;'%>.</h4>
+	</div>
 <% end %>
 
 <script>
@@ -97,6 +102,11 @@
 
 	$(function() {
 		$('#' + id).click();
+	});
+
+	$('.increase-availability').on('click', function() {
+		$('.settings-modal-state').prop('checked', true);
+		$('#availability').click();
 	});
 
 </script>

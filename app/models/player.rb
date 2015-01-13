@@ -292,12 +292,17 @@ class Player < ActiveRecord::Base
   def create_stripe_customer(token)
     Stripe.api_key = 'sk_test_xvxhe0dUKfbGI2MJOWOg1N8j'
 
-    customer = Stripe::Customer.create(
-      card: token,
-      description: self.email
-    )
+    begin 
+      customer = Stripe::Customer.create(
+        card: token,
+        description: self.email
+      )
 
-    self.update(stripe_customer_id: customer.id)
+      self.update(stripe_customer_id: customer.id)
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to sub_request_path
+    end
   end
 
   # XXX bcone -

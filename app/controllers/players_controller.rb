@@ -39,13 +39,29 @@ class PlayersController < ApplicationController
 
 	def add_payment_info
 		@player = Player.find(params[:player_id])
-		@player.create_stripe_customer(params[:paymentToken])
-		if params[:section] == 'payment' && params[:sub_request]
-			flash[:success] = 'Payment information successfully updated.'
-			redirect_to sub_requests_path(sub_request: params[:sub_request])
-		else
-			redirect_to edit_player_path(current_user, section: 'payment')
-		end
+		token = params[:paymentToken]
+
+		Stripe.api_key = ENV['stripe_api_key']
+
+    begin 
+      customer = Stripe::Customer.create(
+        card: token,
+        description: @player.email
+      )
+
+      @player.update(stripe_customer_id: customer.id)
+
+      if params[:section] == 'payment' && params[:sub_request]
+				flash[:success] = 'Payment information successfully updated.'
+				redirect_to sub_requests_path(sub_request: params[:sub_request])
+			else
+				redirect_to edit_player_path(current_user, section: 'payment')
+			end
+			
+    rescue Stripe::CardError => e
+      flash[:error] = e.message
+      redirect_to sub_requests_path
+    end
 	end
 
 	def create_teams
