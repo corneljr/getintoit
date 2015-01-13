@@ -90,6 +90,7 @@ gem 'capistrano-rails', group: :development
 gem 'font-awesome-rails'
 gem 'bourbon'
 gem 'neat'
+gem 'geocoder'
 
 group :development do
   # Annotate models on migrate

@@ -87,6 +87,13 @@ class SubRequest < ActiveRecord::Base
     where.not(sport_id: sports.map(&:id)).where('start_time BETWEEN ? AND ?', Time.now, Time.now + 48.hours)
   }
 
+  geocoded_by :get_address
+  after_validation :geocode
+
+  def get_address
+    self.venue.address
+  end
+
   def is_waiting?
     self.status == 'open'
   end
@@ -160,6 +167,5 @@ class SubRequest < ActiveRecord::Base
       return self[:skill_level] if mean.zero?
       (self.league.skill_rating / mean) * self[:skill_level]
     end
-
 end
 

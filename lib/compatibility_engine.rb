@@ -26,6 +26,7 @@ class CompatibilityEngine
     # @return [ActiveRecord::Relation] the games that player might like
     def get_compatible_games(player)
       games = SubRequest.
+        near(player.address, player.availability_radius).
         is_waiting_for_sub.
         matches_player_sports(player.player_sports).
         coincides_with(player.availabilities).

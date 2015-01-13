@@ -14,6 +14,13 @@ class Venue < ActiveRecord::Base
 
   validates :name, :city_id, :province_id, :country, :address, :presence => true
 
+  geocoded_by :address
+  after_validation :geocode, :if => :needs_lat_lng
+
+  def needs_lat_lng
+    latitude == nil || longitude == nil
+  end
+
   def self.information_array
 		array = []
 		Venue.all.each do |venue|

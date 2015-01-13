@@ -63,3 +63,23 @@
 	</div>
 </div>
 
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :availability_radius, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<div class='select-wrapper'>
+			<%= f.select :availability_radius, options_for_select((10..100).to_a), {}, class: 'input-field section-select' %>
+		</div>
+	</div>
+</div>
+
+<div class='input-container'>
+	<div class='label-container'>
+		<%= f.label :address, class: 'input-label' %>
+	</div>
+	<div class='field-container'>
+		<%= f.text_field :address, placeholder: 'Postal Code', 'required' => 'required', class: 'input-field' %>
+	</div>
+</div>
+

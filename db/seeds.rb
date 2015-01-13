@@ -16,11 +16,11 @@ end
 puts '----------------creating players---------------'
 
 
-player1 = Player.create(first_name: 'Justin', last_name: 'Lahey', email: 'justinl@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male', stripe_customer_id: 'cus_5LFSplIQ26qZ67')
-player2 = Player.create(first_name: 'Kevin', last_name: 'Mako', email: 'kevinm@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male', stripe_customer_id: 'cus_5LFSplIQ26qZ67')
-player3 = Player.create(first_name: 'Pushpa', last_name: 'Something', email: 'pushpaw@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male')
-player4 = Player.create(first_name: 'Jim', last_name: 'Jones', email: 'joshc@subzie.com', password: '123', password_confirmation: '123', birth_date: '05/06/1991', timezone: 'EST', sex: 'male')
-player5 = Player.create(first_name: 'Arnel', last_name: 'Something', email: 'arneli@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male')
+player1 = Player.create(first_name: 'Justin', last_name: 'Lahey', email: 'justinl@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male', stripe_customer_id: 'cus_5LFSplIQ26qZ67', address: '200 Blue Jay Way, Toronto')
+player2 = Player.create(first_name: 'Kevin', last_name: 'Mako', email: 'kevinm@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male', stripe_customer_id: 'cus_5LFSplIQ26qZ67', address: '200 Blue Jay Way, Toronto')
+player3 = Player.create(first_name: 'Pushpa', last_name: 'Something', email: 'pushpaw@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male', address: '200 Blue Jay Way, Toronto')
+player4 = Player.create(first_name: 'Jim', last_name: 'Jones', email: 'joshc@subzie.com', password: '123', password_confirmation: '123', birth_date: '05/06/1991', timezone: 'EST', sex: 'male', address: '200 Blue Jay Way, Toronto')
+player5 = Player.create(first_name: 'Arnel', last_name: 'Something', email: 'arneli@subzie.com', password: '123', password_confirmation: '123', birth_date: '08/07/1991', timezone: 'EST', sex: 'male', address: '200 Blue Jay Way, Toronto')
 
 puts '----------------creating player sports---------------'
 (1..4).each do |num|

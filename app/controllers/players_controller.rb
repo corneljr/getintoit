@@ -167,6 +167,6 @@ private
 	end
 	
 	def player_params
-		params.require(:player).permit(:sex,:first_name,:last_name,:email,:password,:password_confirmation,:birth_date,:availability_radius, availabilities_attributes: [:id, :day, :available_from, :available_to], player_sports_attributes: [:id, :player_id, :skill_level, :sport_id, :play_coed,:skill_rating], player_teams_attributes: [:id, :league_id, :sport_id, :team_id, :division_id, :season_id])
+		params.require(:player).permit(:sex,:postal_code, :first_name,:last_name,:email,:password,:password_confirmation,:birth_date,:availability_radius, availabilities_attributes: [:id, :day, :available_from, :available_to], player_sports_attributes: [:id, :player_id, :skill_level, :sport_id, :play_coed,:skill_rating], player_teams_attributes: [:id, :league_id, :sport_id, :team_id, :division_id, :season_id])
 	end
 end

@@ -51,4 +51,14 @@ $(document).on('ready', function() {
 			$(this).addClass('invalid');
 		};
 	});
+
+	$('.account-creation-container').on('keyup', '#player_address', function() {
+		if ($(this).val().length > 5) {
+			$(this).removeClass('invalid');
+			$(this).addClass('valid');
+		} else {
+			$(this).removeClass('valid');
+			$(this).addClass('invalid');
+		};
+	});
 });
